@@ -20,14 +20,14 @@ public class AutorController {
     private AutorService autorService;
 
     @GetMapping
-    public ResponseEntity<List<AutorModel>> findAll(){
-        List<AutorModel> requisicao = autorService.findAll();
+    public ResponseEntity<List<AutorModel>> buscarTodosOsAutores(){
+        List<AutorModel> requisicao = autorService.buscarTodosAutores();
         return ResponseEntity.ok().body(requisicao);
     }
 
     @PostMapping
-    public ResponseEntity <AutorModel> criarPessoa(@RequestBody AutorModel autorModel){
-        AutorModel requisicao = autorService.criarPessoa(autorModel);
+    public ResponseEntity <AutorModel> criarAutor(@RequestBody AutorModel autorModel){
+        AutorModel requisicao = autorService.criarAutores(autorModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}").buildAndExpand(autorModel.getId())
                 .toUri();
@@ -35,19 +35,19 @@ public class AutorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar (@PathVariable Long id){
-        autorService.deletar(id);
+    public ResponseEntity<?> deletarAutor(@PathVariable Long id){
+        autorService.deletarAutores(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public Optional<AutorModel> buscarId(@PathVariable Long id){
-        return  autorService.buscarId(id);
+    public Optional<AutorModel> buscarAutorPeloId(@PathVariable Long id){
+        return  autorService.buscarAutorId(id);
     }
 
     @PutMapping("/{id}")
-    public AutorModel atualizar(@PathVariable Long id, @RequestBody AutorModel autorModel){
-        return autorService.atualizar(id,autorModel);
+    public AutorModel atualizarAutor(@PathVariable Long id, @RequestBody AutorModel autorModel){
+        return autorService.atualizarAutores(id,autorModel);
     }
 
 

@@ -16,15 +16,15 @@ public class AutorService {
     @Autowired
     private AutorRepository autorRepository;
 
-    public List<AutorModel> findAll() { return autorRepository.findAll(); }
+    public List<AutorModel> buscarTodosAutores() { return autorRepository.findAll(); }
 
-    public AutorModel criarPessoa(AutorModel autorModel){
+    public AutorModel criarAutores(AutorModel autorModel){
         return autorRepository.save(autorModel);
     }
 
-    public Optional<AutorModel> buscarId(Long id) { return autorRepository.findById(id); }
+    public Optional<AutorModel> buscarAutorId(Long id) { return autorRepository.findById(id); }
 
-    public AutorModel atualizar(Long id, AutorModel autorModel){
+    public AutorModel atualizarAutores(Long id, AutorModel autorModel){
         AutorModel model = autorRepository.findById(id).get();
         model.setNome(autorModel.getNome());
         model.setDataNascimento(autorModel.getDataNascimento());
@@ -32,7 +32,7 @@ public class AutorService {
         return autorRepository.save(model);
     }
 
-    public void deletar(Long id){ autorRepository.deleteById(id); }
+    public void deletarAutores(Long id){ autorRepository.deleteById(id); }
 
 
 }
